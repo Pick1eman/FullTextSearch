@@ -98,3 +98,20 @@ void hashtab_free(listnode **hashtab)
 	}
 	free(hashtab);
 }
+
+void hashtab_print(listnode **hashtab)
+{
+	listnode *curr_node;
+
+	for (unsigned int i = 0; i < HASHTAB_SIZE; ++i) {
+		curr_node = hashtab[i];
+		if (curr_node) {
+			printf("Node[%d]\n", i);
+			while (curr_node->next) {
+				curr_node = curr_node->next;
+				printf("key = %s\nvalue = %d\n", curr_node->key, curr_node->value);
+			}
+			printf("key = %s\nvalue = %d\n", curr_node->key, curr_node->value);
+		}
+	}
+}

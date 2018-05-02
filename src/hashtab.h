@@ -6,7 +6,7 @@ typedef struct listnode {
 	struct listnode *next;
 } listnode;
 
-#define HASHTAB_SIZE 10000
+#define HASHTAB_SIZE 200
 #define HASHTAB_MUL 31
 
 extern listnode *hashtab[HASHTAB_SIZE];
@@ -20,3 +20,5 @@ void hashtab_add(listnode **hashtab, char *key, int value);
 listnode *hashtab_lookup(listnode **hashtab, char *key);
 
 void hashtab_free(listnode **hashtab);
+
+void hashtab_print(listnode **hashtab);
