@@ -106,12 +106,11 @@ void hashtab_print(listnode **hashtab)
 	for (unsigned int i = 0; i < HASHTAB_SIZE; ++i) {
 		curr_node = hashtab[i];
 		if (curr_node) {
-			printf("Node[%d]\n", i);
-			while (curr_node->next) {
-				curr_node = curr_node->next;
+			printf("\nNode[%d]\n", i);
+			while (curr_node) {
 				printf("key = %s\nvalue = %d\n", curr_node->key, curr_node->value);
+				curr_node = curr_node->next;
 			}
-			printf("key = %s\nvalue = %d\n", curr_node->key, curr_node->value);
 		}
 	}
 }
