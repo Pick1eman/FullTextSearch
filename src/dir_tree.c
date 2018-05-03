@@ -2,6 +2,7 @@
 #include <dirent.h>
 #include <string.h>
 #include "dir_tree.h"
+#include <stdlib.h>
 
 
 void dir_tree(char *curr_dir) 
@@ -16,21 +17,20 @@ void dir_tree(char *curr_dir)
 
 		if ((strcmp(files->d_name, ".")) && (strcmp(files->d_name, ".."))){
 			printf("%s\n", files->d_name);
-
-			for (int i = 0; i < strlen(files->d_name) + 1; ++i){
+			int count = is_it_file_or_not(files->d_name);
+			/*for (int i = 0; i < strlen(files->d_name) + 1; ++i){
 					//Применить для проверки файла fopen
 				if (files->d_name[i] == '.') {
 					count++;
 				}
-			}
+			}*/
 
-
-			if (count == 0) {
+			if (count == 1) {
 				strcpy(next_dir, files->d_name);
 				int curr_dir_length = strlen(curr_dir) + 1;
 				int next_dir_length = strlen(next_dir);
 
-				// Перенос новой строки на длину текущей строки 
+				// Перенос новой строки вправо на длину текущей строки 
 				for (int i = next_dir_length; i >= 0; --i) {
 					next_dir[i+curr_dir_length] = next_dir[i];
 				}
@@ -47,3 +47,17 @@ void dir_tree(char *curr_dir)
 	closedir(dir);
 
 }
+
+
+
+
+int is_it_file_or_not(const char *name_file) // "Файл или нет"
+{
+	FILE *file;
+	file = fopen(name_file, "r");
+	if (file != NULL) {
+		return 1;
+	} else { 
+		return 0; 
+	}
+}		
