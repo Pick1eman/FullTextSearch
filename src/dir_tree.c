@@ -7,54 +7,46 @@
 
 void dir_tree(char *curr_dir) 
 {
-	int count = 0;
-	char next_dir[255];
-	DIR *dir;
+	char name[256];
+	DIR *dir, *check_dir;
 	FILE *file;
 	struct dirent *files;
 	dir = opendir(curr_dir);
 
-	while ((files = readdir(dir)) != NULL) {//Поиск файлов
+	//Поиск файлов
+	while ((files = readdir(dir)) != NULL) {
+		
+		//Исключаем текущий и родительский каталоги
+		if (strcmp(files->d_name, ".") && strcmp(files->d_name, "..")) {
+			
+			//Преобразуем имя файла в относительный адрес
+			strcpy(name, files->d_name);
+			int curr_dir_length = strlen(curr_dir) + 1;
+			int name_length = strlen(name);
 
-		if ((strcmp(files->d_name, ".")) && (strcmp(files->d_name, ".."))){
-			printf("%s\n", files->d_name);
-			/*for (int i = 0; i < strlen(files->d_name) + 1; ++i){
-					//Применить для проверки файла fopen
-				if (files->d_name[i] == '.') {
-					count++;
-				}
-			}*/
-
-
-			file = fopen(name_file, "r");
-			if (file != NULL) {
-				count = 1;
-			} else { 
-				count = 0; 
+			// Перенос новой строки вправо на длину текущей строки
+			for (int i = name_length; i >= 0; --i) {
+				name[i + curr_dir_length] = name[i];
 			}
 
-			if (count == 1) {
-				strcpy(next_dir, files->d_name);
-				int curr_dir_length = strlen(curr_dir) + 1;
-				int next_dir_length = strlen(next_dir);
-
-				// Перенос новой строки вправо на длину текущей строки 
-				for (int i = next_dir_length; i >= 0; --i) {
-					next_dir[i+curr_dir_length] = next_dir[i];
-				}
-				for (int i = 0; i < curr_dir_length; ++i){
-					next_dir[i] = curr_dir[i];
-				}
-				next_dir[curr_dir_length - 1] = '/';
-				printf("%s\n", next_dir);
-				dir_tree(next_dir);				
+			for (int i = 0; i < curr_dir_length; ++i){
+				name[i] = curr_dir[i];
 			}
-			count = 0;			
+
+			name[curr_dir_length - 1] = '/';
+			printf("%s\n", name); //temp
+
+			//Проверка на то, является ли элемент папкой или файлом
+			check_dir = opendir(name);
+			if (check_dir != NULL) {				
+				dir_tree(name);
+				closedir(check_dir);
+			} else {
+				file = fopen(name, "r");
+				printf("build_hashtab()\n"); //temp
+				fclose(file);
+			}			
 		}
 	}
 	closedir(dir);
-
 }
-
-
-	
