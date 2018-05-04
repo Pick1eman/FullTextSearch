@@ -1,9 +1,10 @@
 #include <stdio.h>
-#include <dirent.h>
+#include <stdlib.h>
 #include <string.h>
-#include "dir_tree.h"
-#include "hashtab.h"
+#include <dirent.h>
 #include "build_hashtab.h"
+#include "hashtab.h"
+#include "dir_tree.h"
 
 int main()
 {

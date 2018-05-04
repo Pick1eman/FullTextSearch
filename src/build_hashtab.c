@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "hashtab.h"
 #include "build_hashtab.h"
+#include "hashtab.h"
 
 #define SIZE 100 //temp
 #define STRING_LENGTH 64
