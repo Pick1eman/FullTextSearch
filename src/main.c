@@ -2,8 +2,8 @@
 #include <dirent.h>
 #include <string.h>
 #include "dir_tree.h"
-
-
+#include "hashtab.h"
+#include "build_hashtab.h"
 
 int main()
 {
