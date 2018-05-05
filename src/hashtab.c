@@ -3,8 +3,6 @@
 #include <string.h>
 #include "hashtab.h"
 
-listnode *hashtab[HASHTAB_SIZE];
-
 unsigned int hashtab_hash(char *key)
 {
 	unsigned int hash = 0;
@@ -85,18 +83,14 @@ void hashtab_free(listnode **hashtab)
 
 	for (unsigned int i = 0; i < HASHTAB_SIZE; ++i) {
 		curr_node = hashtab[i];
-		if (curr_node) {
-			while (curr_node->next) {
-				prev_node = curr_node;
-				curr_node = curr_node->next;
-				free(prev_node->key);
-				free(prev_node);
-			}
-			free(curr_node->key);
-			free(curr_node);
+		while (curr_node) {
+			prev_node = curr_node;
+			curr_node = curr_node->next;
+			free(prev_node->key);
+			free(prev_node);
 		}
 	}
-	free(hashtab);
+	free(*hashtab);
 }
 
 void hashtab_print(listnode **hashtab)

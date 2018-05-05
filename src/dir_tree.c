@@ -2,17 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <dirent.h>
+#include "hashtab.h"
 #include "build_hashtab.h"
-#include "dir_tree.h"
-
 
 void dir_tree(char *curr_dir) 
 {
 	char name[256];
-	DIR *dir, *check_dir;
-	FILE *file;
+	DIR *dir = opendir(curr_dir), *check_dir;
 	struct dirent *files;
-	dir = opendir(curr_dir);
 
 	//Поиск файлов
 	while ((files = readdir(dir)) != NULL) {
@@ -41,12 +38,12 @@ void dir_tree(char *curr_dir)
 			check_dir = opendir(name);
 			if (check_dir != NULL) {				
 				dir_tree(name);
-				closedir(check_dir);
 			} else {
-				file = fopen(name, "r");
-				printf("build_hashtab()\n"); //temp
+				FILE *file = fopen(name, "r");
+				build_hashtab(file);
 				fclose(file);
-			}			
+			}
+			closedir(check_dir);			
 		}
 	}
 	closedir(dir);

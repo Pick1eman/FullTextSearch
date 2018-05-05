@@ -1,3 +1,6 @@
 #pragma once
 
-void build_hashtab(listnode **hashtab, FILE *input);
+#define SIZE 100 //temp
+#define STRING_LENGTH 64
+
+void build_hashtab(FILE *input);
