@@ -2,7 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <dirent.h>
+#include "int_vector.h"
 #include "dir_tree.h"
+#include "search.h"
 
 char *sample;
 
