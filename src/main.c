@@ -9,7 +9,7 @@ char *sample;
 
 int main(int argc, char *argv[])
 {
-	char directory[256] = "./res";
+	//char directory[256] = "./res";
 	//direction_recurs(directory);
 	FILE *log = fopen("./logs/user.log", "w");
 	fclose(log);

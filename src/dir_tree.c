@@ -5,6 +5,21 @@
 #include "dir_tree.h"
 #include "search.h"
 
+extern char *sample;
+
+char *file_to_string(FILE *file)
+{
+	unsigned int i;
+	char *string = (char*)malloc(1 * sizeof(char));
+
+	for (i = 0; fscanf(file, "%c", &string[i]) != EOF; ++i) {
+		string = (char*)realloc(string, (i + 2) * sizeof(char));
+	}
+	string[i] = '\0';
+
+	return string;
+}
+
 void direction(char *dir_name)
 {
 	DIR *dir = opendir(dir_name), *check_dir = NULL;
@@ -45,7 +60,14 @@ void direction(char *dir_name)
 				fclose(log);
 
 				FILE *file = fopen(name, "r");
-				//Раньше были времена,а теперь мгновение,раньше помню хуй стоял,а теперь давление
+
+				char *text = file_to_string(file);
+
+				unsigned int *result = search(text, sample);
+
+				free(text);
+				
+				fclose(log);
 			}
 			closedir(check_dir);
 			free(name);
@@ -53,7 +75,6 @@ void direction(char *dir_name)
 	}
 	closedir(dir);
 }
-
 
 void direction_recurs(char *dir_name)
 {
@@ -95,7 +116,14 @@ void direction_recurs(char *dir_name)
 				fclose(log);
 
 				FILE *file = fopen(name, "r");
-				//Раньше были времена, а теперь мгновение, раньше помню хуй стоял, а теперь давление
+
+				char *text = file_to_string(file);
+
+				unsigned int *result = search(text, sample);
+
+				free(text);
+
+				fclose(log);
 			}
 			closedir(check_dir);
 			free(name);
