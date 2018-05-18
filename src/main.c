@@ -2,18 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <dirent.h>
-#include "hashtab.h"
-#include "build_hashtab.h"
 #include "dir_tree.h"
-
-listnode *arr_hashtab[HASHTAB_SIZE];
 
 char *sample;
 
 int main(int argc, char *argv[])
 {
-	char directory[256] = "./res";
-	//direction_recurs(directory);
 	FILE *log = fopen("./logs/user.log", "w");
 	fclose(log);
 
