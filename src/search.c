@@ -10,14 +10,14 @@ IntVector *search(char *text, char *sample)
 	unsigned int text_length = strlen(text);
 	unsigned int sample_length = strlen(sample);
 
+    IntVector *result = int_vector_new(1);
+
     //Если длина образца больше длины текста, то тщетно бытие
 	if (sample_length > text_length) {
-		return NULL;
+		return result;
 	}
 
 	int br = 0;
-
-    IntVector *result = int_vector_new(1);
 
 	//Пеебираем все возможные подстроки, выполняя сдвиг на один символ
 	for (unsigned int i = 0; i <= (text_length - sample_length); ++i) {

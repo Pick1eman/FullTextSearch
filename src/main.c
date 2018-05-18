@@ -3,15 +3,23 @@
 #include <string.h>
 #include <dirent.h>
 #include "int_vector.h"
+#include "output.h"
 #include "dir_tree.h"
 #include "search.h"
 
 char *sample;
 
 int main(int argc, char *argv[])
+
 {
 	FILE *log = fopen("./logs/user.log", "w");
 	fclose(log);
+
+	/*
+	При отсутствии всех ключей почему-то выполняется рекурсивный поиск
+	Возможны и другие ошибки
+	Разобраться!
+	*/
 
 	if (argc == 6) {
 		if (!strcmp(argv[1], "-r") && (!strcmp(argv[2], "-h")) && (!strcmp(argv[3], "-s"))) {

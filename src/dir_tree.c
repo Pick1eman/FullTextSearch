@@ -3,6 +3,7 @@
 #include <string.h>
 #include <dirent.h>
 #include "int_vector.h"
+#include "output.h"
 #include "dir_tree.h"
 #include "search.h"
 
@@ -20,6 +21,13 @@ char *file_to_string(FILE *file)
 
 	return string;
 }
+
+ /*
+ Убрать дублирующиеся функции!!!
+ Для всех ключей сделать одну универсальную функцию
+ Наличие/отсутствие того или иного ключа записать в глобальную переменную
+ В функции сделать проверку наличия ключей, в зависимости от этого выполнять что требуется
+ */
 
 void direction(char *dir_name)
 {
@@ -59,18 +67,17 @@ void direction(char *dir_name)
 				FILE *log = fopen("./logs/user.log", "a");
 				fprintf(log, "%s\n", name);
 				fclose(log);
+				
+				FILE *file = fopen(name, "r"); //Открываем файл				
+				char *text = file_to_string(file); //Формируем из файла строку
+				fclose(file);
+				
+				IntVector *result = search(text, sample); //Передаем текст и образец в функцию поиска
+				
+				file_output(text, result); //Текст и полученный вектор передаем в выводящую функцию
 
-				FILE *file = fopen(name, "r");
-
-				char *text = file_to_string(file);
-
-				IntVector *result = search(text, sample);
-
-				int_vector_free(result);
-
+				int_vector_free(result);				
 				free(text);
-
-				fclose(log);
 			}
 			closedir(check_dir);
 			free(name);
@@ -117,18 +124,17 @@ void direction_recurs(char *dir_name)
 				FILE *log = fopen("./logs/user.log", "a");
 				fprintf(log, "%s\n", name);
 				fclose(log);
+				
+				FILE *file = fopen(name, "r"); //Открываем файл				
+				char *text = file_to_string(file); //Формируем из файла строку
+				fclose(file);
+				
+				IntVector *result = search(text, sample); //Передаем текст и образец в функцию поиска
+				
+				file_output(text, result); //Текст и полученный вектор передаем в выводящую функцию
 
-				FILE *file = fopen(name, "r");
-
-				char *text = file_to_string(file);
-
-				IntVector *result = search(text, sample);
-
-				int_vector_free(result);
-
+				int_vector_free(result);				
 				free(text);
-
-				fclose(log);
 			}
 			closedir(check_dir);
 			free(name);
