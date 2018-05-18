@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <dirent.h>
-#include "hashtab.h"
-#include "build_hashtab.h"
 
 void dir_tree(char *curr_dir) 
 {
@@ -40,7 +38,7 @@ void dir_tree(char *curr_dir)
 				dir_tree(name);
 			} else {
 				FILE *file = fopen(name, "r");
-				build_hashtab(file);
+				//build_hashtab(file);
 				fclose(file);
 			}
 			closedir(check_dir);			
