@@ -1,3 +1,5 @@
 #pragma once
 
-void dir_tree(char *directory);
+void direction(char *dir_name);
+
+void direction_recurs(char *dir_name);

@@ -11,4 +11,7 @@ build/build_hashtab.o: src/build_hashtab.c
 
 clean:
 		rm build/main.o build/dir_tree.o build/hashtab.o build/build_hashtab.o
-
+dir:
+		mkdir build
+		mkdir bin
+		mkdir logs
