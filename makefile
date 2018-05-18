@@ -8,5 +8,8 @@ build/search.o: src/search.c
 		gcc -Wall -c -o build/search.o src/search.c
 
 clean:
-		rm build/main.o build/dir_tree.o
-
+		rm build/*.o
+dir:
+		mkdir build
+		mkdir bin
+		mkdir logs
