@@ -1,6 +1,10 @@
-FullTextSearch
 *.[ao]
 #*#
 *~
 *.txt
+*.log
 *.json
+bin/*
+build/*
+logs/*
+res/*
