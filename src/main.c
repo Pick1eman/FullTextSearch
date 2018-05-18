@@ -3,6 +3,7 @@
 #include <string.h>
 #include <dirent.h>
 #include "dir_tree.h"
+#include "search.h"
 
 int main()
 {

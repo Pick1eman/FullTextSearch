@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <dirent.h>
+#include "dir_tree.h"
+#include "search.h"
 
 void dir_tree(char *curr_dir) 
 {
