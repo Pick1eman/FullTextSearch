@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <dirent.h>
+#include "int_vector.h"
 #include "dir_tree.h"
 #include "search.h"
 
@@ -63,10 +64,12 @@ void direction(char *dir_name)
 
 				char *text = file_to_string(file);
 
-				unsigned int *result = search(text, sample);
+				IntVector *result = search(text, sample);
+
+				int_vector_free(result);
 
 				free(text);
-				
+
 				fclose(log);
 			}
 			closedir(check_dir);
@@ -119,7 +122,9 @@ void direction_recurs(char *dir_name)
 
 				char *text = file_to_string(file);
 
-				unsigned int *result = search(text, sample);
+				IntVector *result = search(text, sample);
+
+				int_vector_free(result);
 
 				free(text);
 
