@@ -17,12 +17,6 @@ int main(int argc, char *argv[])
 	FILE *log = fopen("./logs/user.log", "w");
 	fclose(log);
 
-	/*
-	При отсутствии всех ключей почему-то выполняется рекурсивный поиск
-	Возможны и другие ошибки
-	Разобраться!
-	*/
-
 	if (argc == 6) {
 		if (!strcmp(argv[1], "-r") && (!strcmp(argv[2], "-h")) && (!strcmp(argv[3], "-s"))) {
 			DIR *check_dir = opendir(argv[5]);
@@ -32,7 +26,7 @@ int main(int argc, char *argv[])
 				r = 1;
 				h = 1;
 				s = 1;
-				direction_recurs(argv[5]);
+				direction(argv[5]);
 				//Скрытые папки/файлы
 				//Симлинк
 				printf("Search done\n");
@@ -53,7 +47,7 @@ int main(int argc, char *argv[])
 				r = 1;
 				h = 1;
 				//Скрытые папки/файлы
-				direction_recurs(argv[4]);
+				direction(argv[4]);
 				printf("Search done\n");
 			} else {
                 printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
@@ -81,7 +75,7 @@ int main(int argc, char *argv[])
 				r = 1;
 				s = 1;
 				//Симлинк
-				direction_recurs(argv[4]);
+				direction(argv[4]);
 				printf("Search done\n");
 			} else {
                 printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
@@ -98,7 +92,7 @@ int main(int argc, char *argv[])
 				closedir(check_dir);
 				sample = argv[2];
 				r = 1;
-				direction_recurs(argv[3]);
+				direction(argv[3]);
 				printf("Search done\n");
 			} else {
                 printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
