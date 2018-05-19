@@ -12,7 +12,7 @@ IntVector *search(char *text, char *sample)
 
     IntVector *result = int_vector_new(1);
 
-    //Если длина образца больше длины текста, то тщетно бытие
+    //Если длина образца больше длины текста, то совпадений быть не может
 	if (sample_length > text_length) {
 		return result;
 	}
@@ -32,7 +32,6 @@ IntVector *search(char *text, char *sample)
 
 		//Если совпадение найдено (цикл не был прерван)
 		if (!br) {
-			printf("%d\n", i); //temp
 			//Добавляем индекс начала подстроки
 			int_vector_push_back(result, i);
 		} else {
