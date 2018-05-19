@@ -30,13 +30,13 @@ int main(int argc, char *argv[])
 				//Скрытые папки/файлы
 				//Симлинк
 				printf("Search done\n");
-			 } else {
-                printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
-                return -1;
-           	 }
-        } else {
-            printf("Invalid key\nSearch failed\n");
-            return -1;
+			} else {
+				printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
+				return -1;
+			 }
+		} else {
+			printf("Invalid key\nSearch failed\n");
+			return -1;
 		}		
 	} else if (argc == 5) {
 		if (!strcmp(argv[1], "-r") && (!strcmp(argv[2], "-h"))) {
@@ -50,9 +50,9 @@ int main(int argc, char *argv[])
 				direction(argv[4]);
 				printf("Search done\n");
 			} else {
-                printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
-                return -1;
-           	 }
+				printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
+				return -1;
+			}
 		} else if (!strcmp(argv[1], "-h") && (!strcmp(argv[2], "-s"))){
 			DIR *check_dir = opendir(argv[4]);
 			if (check_dir != NULL) {
@@ -64,9 +64,9 @@ int main(int argc, char *argv[])
 				direction(argv[4]);
 				printf("Search done\n");
 			} else {
-                printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
-                return -1;
-           	 }
+				printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
+				return -1;
+			}
 		} else if (!strcmp(argv[1], "-r") && (!strcmp(argv[2], "-s"))){
 			DIR *check_dir = opendir(argv[4]);
 			if (check_dir != NULL) {
@@ -78,12 +78,12 @@ int main(int argc, char *argv[])
 				direction(argv[4]);
 				printf("Search done\n");
 			} else {
-                printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
-                return -1;
-           	 }
+				printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
+				return -1;
+			}
 		} else {
-            printf("Invalid key\nSearch failed\n");
-            return -1;
+			printf("Invalid key\nSearch failed\n");
+			return -1;
 		}
 	} else if (argc == 4) {
 		if (!strcmp(argv[1], "-r")) {
@@ -95,9 +95,9 @@ int main(int argc, char *argv[])
 				direction(argv[3]);
 				printf("Search done\n");
 			} else {
-                printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
-                return -1;
-           	 }
+				printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
+				return -1;
+			}
 		} else if (!strcmp(argv[1], "-h")) {
 			DIR *check_dir = opendir(argv[3]);
 			if (check_dir != NULL) {
@@ -108,9 +108,9 @@ int main(int argc, char *argv[])
 				direction(argv[3]);
 				printf("Search done\n");
 			} else {
-                printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
-                return -1;
-           	 }
+				printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
+				return -1;
+			}
 		} else if (!strcmp(argv[1], "-s")) {
 			DIR *check_dir = opendir(argv[3]);
 			if (check_dir != NULL) {
@@ -121,12 +121,12 @@ int main(int argc, char *argv[])
 				direction(argv[3]);
 				printf("Search done\n");
 			} else {
-                printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
-                return -1;
-           	 }
+				printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
+				return -1;
+			}
 		} else {
-            printf("Invalid key\nSearch failed\n");
-            return -1;
+			printf("Invalid key\nSearch failed\n");
+			return -1;
 		}
 	} else if (argc == 3) {
 		DIR *check_dir = opendir(argv[2]);
@@ -136,9 +136,9 @@ int main(int argc, char *argv[])
 			direction(argv[2]);
 			printf("Search done\n");
 		} else {
-            printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
-            return -1;
-        }
+			printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
+			return -1;
+		}
 	} else {
 		printf("Invalid arguments number\nSearch failed\n");
 		return -1;

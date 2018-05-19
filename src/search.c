@@ -10,9 +10,9 @@ IntVector *search(char *text, char *sample)
 	unsigned int text_length = strlen(text);
 	unsigned int sample_length = strlen(sample);
 
-    IntVector *result = int_vector_new(1);
+	IntVector *result = int_vector_new(1);
 
-    //Если длина образца больше длины текста, то совпадений быть не может
+	//Если длина образца больше длины текста, то совпадений быть не может
 	if (sample_length > text_length) {
 		return result;
 	}

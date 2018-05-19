@@ -18,7 +18,7 @@ void file_output(char *text, IntVector *result)
 {
 	FILE *log = fopen("./logs/user.log", "a");
 	
-    //Если result->size = 0, значит совпадения не были найдены
+	//Если result->size = 0, значит совпадения не были найдены
 	if (!result->size) {
 		fprintf(log, "No matches found\n");
 	} else {
