@@ -33,7 +33,11 @@ void direction(char *dir_name)
 	while ((files = readdir(dir)) != NULL) {
 
 		//Исключаем текущий и родительский каталоги
-		if ( strcmp(files->d_name, ".") &&  strcmp(files->d_name, "..")) {
+		if (strcmp(files->d_name, ".") && strcmp(files->d_name, "..")) {
+			//Ключ -h. Проверка, является ли файл (папка) скрытым
+			if ((!h) && (files->d_name[0] == '.')) {
+				continue;
+			}
 
 			//Преобразуем имя файла в относительный адрес
 			int name_length = strlen(files->d_name);
@@ -57,6 +61,7 @@ void direction(char *dir_name)
 			//Проверка на то, является ли элемент папкой или файлом
 			check_dir = opendir(name);
 			if (check_dir != NULL) {
+				//Рекурсия выполняется только если есть ключ -r
 				if (r) {
 					direction(name);
 				}
