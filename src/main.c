@@ -9,6 +9,8 @@
 
 char *sample;
 
+int r = 0, h = 0, s = 0;
+
 int main(int argc, char *argv[])
 
 {
@@ -27,6 +29,9 @@ int main(int argc, char *argv[])
 			if (check_dir != NULL) {
 				closedir(check_dir);
 				sample = argv[4];
+				r = 1;
+				h = 1;
+				s = 1;
 				direction_recurs(argv[5]);
 				//Скрытые папки/файлы
 				//Симлинк
@@ -45,6 +50,8 @@ int main(int argc, char *argv[])
 			if (check_dir != NULL) {
 				closedir(check_dir);
 				sample = argv[3];
+				r = 1;
+				h = 1;
 				//Скрытые папки/файлы
 				direction_recurs(argv[4]);
 				printf("Search done\n");
@@ -57,6 +64,8 @@ int main(int argc, char *argv[])
 			if (check_dir != NULL) {
 				closedir(check_dir);
 				sample = argv[3];
+				h = 1;
+				s = 1;
 				//Симлинк
 				direction(argv[4]);
 				printf("Search done\n");
@@ -69,6 +78,8 @@ int main(int argc, char *argv[])
 			if (check_dir != NULL) {
 				closedir(check_dir);
 				sample = argv[3];
+				r = 1;
+				s = 1;
 				//Симлинк
 				direction_recurs(argv[4]);
 				printf("Search done\n");
@@ -86,6 +97,7 @@ int main(int argc, char *argv[])
 			if (check_dir != NULL) {
 				closedir(check_dir);
 				sample = argv[2];
+				r = 1;
 				direction_recurs(argv[3]);
 				printf("Search done\n");
 			} else {
@@ -97,6 +109,7 @@ int main(int argc, char *argv[])
 			if (check_dir != NULL) {
 				closedir(check_dir);
 				sample = argv[2];
+				h = 1;
 				//Скрытые папки/файлы
 				direction(argv[3]);
 				printf("Search done\n");
@@ -109,6 +122,7 @@ int main(int argc, char *argv[])
 			if (check_dir != NULL) {
 				closedir(check_dir);
 				sample = argv[2];
+				s = 1;
 				//Симлинк
 				direction(argv[3]);
 				printf("Search done\n");
@@ -132,7 +146,7 @@ int main(int argc, char *argv[])
             return -1;
         }
 	} else {
-		printf("Error\n");
+		printf("Invalid arguments number\nSearch failed\n");
 		return -1;
 	}
 	

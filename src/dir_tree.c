@@ -9,6 +9,8 @@
 
 extern char *sample;
 
+extern int r, h, s;
+
 char *file_to_string(FILE *file)
 {
 	unsigned int i;
