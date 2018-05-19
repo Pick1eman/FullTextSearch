@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
 				closedir(check_dir);
 				sample = argv[3];
 				//Симлинк
-				direction(argv[4]);
+				direction_recurs(argv[4]);
 				printf("Search done\n");
 			} else {
                 printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
@@ -125,7 +125,7 @@ int main(int argc, char *argv[])
 		if (check_dir != NULL) {
 			closedir(check_dir);
 			sample = argv[1];
-			direction_recurs(argv[2]);
+			direction(argv[2]);
 			printf("Search done\n");
 		} else {
             printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
