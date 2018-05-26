@@ -8,11 +8,12 @@
 #include "search.h"
 
 /*
-Вывод в формате
-номер_строки:номер_символа_в_строке
-Пока вывод такой
-Нужно переработать или дополнить
+Вывод в формате:
+<имя_файла>: <число_совпадений>
+<номер_строки>-<номер_символа>
 */
+
+size_t general_counter = 0;
 
 void file_output(char *text, IntVector *result)
 {
@@ -20,8 +21,11 @@ void file_output(char *text, IntVector *result)
 	
 	//Если result->size = 0, значит совпадения не были найдены
 	if (!result->size) {
-		fprintf(log, "No matches found\n");
+		fprintf(log, "0\nNo matches found\n");
 	} else {
+		fprintf(log, "%zd\n", result->size);
+		general_counter += result->size;
+
 		unsigned int text_length = strlen(text) + 1;
 		unsigned int str_num = 1; //Переменная считает номер строки
 		unsigned int char_num = 0; //Переменная считает номер символа в строке
@@ -34,7 +38,7 @@ void file_output(char *text, IntVector *result)
 				char_num = 0;
 			}
 			if (i == result->arr[result_index]) {
-				fprintf(log, "%u:%u\n", str_num, char_num);
+				fprintf(log, "%u-%u\n", str_num, char_num);
 				++result_index;
 			}
 		}

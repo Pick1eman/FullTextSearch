@@ -32,7 +32,7 @@ char *file_to_string(FILE *file)
 void traversal_file(char *name)
 {
 	FILE *log = fopen("./logs/user.log", "a");
-	fprintf(log, "%s\n", name);
+	fprintf(log, "%s: ", name);
 	fclose(log);
 
 	FILE *file = fopen(name, "r"); //Открываем файл

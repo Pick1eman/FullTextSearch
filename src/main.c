@@ -11,10 +11,12 @@ char *sample;
 
 int r = 0, h = 0, s = 0;
 
-int main(int argc, char *argv[])
+extern size_t general_counter;
 
+int main(int argc, char *argv[])
 {
 	FILE *log = fopen("./logs/user.log", "w");
+	fprintf(log, "         Output format\n _____________________________\n|<file_name>: <matches_number>|\n|<line>-<character>           |\n|_____________________________|\n\n");
 	fclose(log);
 
 	if (argc == 6) {
@@ -143,6 +145,10 @@ int main(int argc, char *argv[])
 		printf("Invalid arguments number\nSearch failed\n");
 		return -1;
 	}
+
+	log = fopen("./logs/user.log", "a");
+	fprintf(log, "Total: %zd\n", general_counter);
+	fclose(log);
 	
 	return 0;
 }
