@@ -15,9 +15,17 @@
 
 size_t general_counter = 0;
 
-void file_output(char *text, IntVector *result)
+void beginning_output(char *dir_name)
+{
+	FILE *log = fopen("./logs/user.log", "w");
+	fprintf(log, "         Output format\n _____________________________\n|<file_name>: <matches_number>|\n|<line>-<character>           |\n|_____________________________|\n\nTarget directory: %s\n\n", dir_name);
+	fclose(log);
+}
+
+void result_output(char *file_name, char *text, IntVector *result)
 {
 	FILE *log = fopen("./logs/user.log", "a");
+	fprintf(log, "%s: ", file_name);
 	
 	//Если result->size = 0, значит совпадения не были найдены
 	if (!result->size) {
@@ -45,5 +53,12 @@ void file_output(char *text, IntVector *result)
 	}
 	fprintf(log, "\n");
 
+	fclose(log);
+}
+
+void ending_output()
+{
+	FILE *log = fopen("./logs/user.log", "a");
+	fprintf(log, "Total: %zd\n", general_counter);
 	fclose(log);
 }

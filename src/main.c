@@ -11,12 +11,10 @@ char *sample;
 
 int r = 0, h = 0, s = 0;
 
-extern size_t general_counter;
-
 int main(int argc, char *argv[])
 {
 	FILE *log = fopen("./logs/user.log", "w");
-	fprintf(log, "         Output format\n _____________________________\n|<file_name>: <matches_number>|\n|<line>-<character>           |\n|_____________________________|\n\n");
+	fprintf(log, "Search failed\n");
 	fclose(log);
 
 	if (argc == 6) {
@@ -28,6 +26,7 @@ int main(int argc, char *argv[])
 				r = 1;
 				h = 1;
 				s = 1;
+				beginning_output(argv[5]);
 				traversal(argv[5]);
 				//Скрытые папки/файлы
 				//Симлинк
@@ -49,6 +48,7 @@ int main(int argc, char *argv[])
 				r = 1;
 				h = 1;
 				//Скрытые папки/файлы
+				beginning_output(argv[4]);
 				traversal(argv[4]);
 				printf("Search done\n");
 			} else {
@@ -63,6 +63,7 @@ int main(int argc, char *argv[])
 				h = 1;
 				s = 1;
 				//Симлинк
+				beginning_output(argv[4]);
 				traversal(argv[4]);
 				printf("Search done\n");
 			} else {
@@ -77,6 +78,7 @@ int main(int argc, char *argv[])
 				r = 1;
 				s = 1;
 				//Симлинк
+				beginning_output(argv[4]);
 				traversal(argv[4]);
 				printf("Search done\n");
 			} else {
@@ -94,6 +96,7 @@ int main(int argc, char *argv[])
 				closedir(check_dir);
 				sample = argv[2];
 				r = 1;
+				beginning_output(argv[3]);
 				traversal(argv[3]);
 				printf("Search done\n");
 			} else {
@@ -107,6 +110,7 @@ int main(int argc, char *argv[])
 				sample = argv[2];
 				h = 1;
 				//Скрытые папки/файлы
+				beginning_output(argv[3]);
 				traversal(argv[3]);
 				printf("Search done\n");
 			} else {
@@ -120,6 +124,7 @@ int main(int argc, char *argv[])
 				sample = argv[2];
 				s = 1;
 				//Симлинк
+				beginning_output(argv[3]);
 				traversal(argv[3]);
 				printf("Search done\n");
 			} else {
@@ -135,6 +140,7 @@ int main(int argc, char *argv[])
 		if (check_dir != NULL) {
 			closedir(check_dir);
 			sample = argv[1];
+			beginning_output(argv[2]);
 			traversal(argv[2]);
 			printf("Search done\n");
 		} else {
@@ -146,9 +152,7 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-	log = fopen("./logs/user.log", "a");
-	fprintf(log, "Total: %zd\n", general_counter);
-	fclose(log);
+	ending_output();
 	
 	return 0;
 }

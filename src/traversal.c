@@ -29,19 +29,15 @@ char *file_to_string(FILE *file)
 В нее перенес все что выполнялось при обнаружении файла
 */
 
-void traversal_file(char *name)
+void traversal_file(char *file_name)
 {
-	FILE *log = fopen("./logs/user.log", "a");
-	fprintf(log, "%s: ", name);
-	fclose(log);
-
-	FILE *file = fopen(name, "r"); //Открываем файл
+	FILE *file = fopen(file_name, "r"); //Открываем файл
 	char *text = file_to_string(file); //Формируем из файла строку
 	fclose(file);	
 	
 	IntVector *result = search(text, sample); //Передаем текст и образец в функцию поиска
 	
-	file_output(text, result); //Текст и полученный вектор передаем в выводящую функцию
+	result_output(file_name, text, result); //Текст и полученный вектор передаем в выводящую функцию
 
 	int_vector_free(result);				
 	free(text);
