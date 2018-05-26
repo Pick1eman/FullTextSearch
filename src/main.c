@@ -4,7 +4,7 @@
 #include <dirent.h>
 #include "int_vector.h"
 #include "output.h"
-#include "dir_tree.h"
+#include "traversal.h"
 #include "search.h"
 
 char *sample;
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 				r = 1;
 				h = 1;
 				s = 1;
-				direction(argv[5]);
+				traversal(argv[5]);
 				//Скрытые папки/файлы
 				//Симлинк
 				printf("Search done\n");
@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 				r = 1;
 				h = 1;
 				//Скрытые папки/файлы
-				direction(argv[4]);
+				traversal(argv[4]);
 				printf("Search done\n");
 			} else {
 				printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
 				h = 1;
 				s = 1;
 				//Симлинк
-				direction(argv[4]);
+				traversal(argv[4]);
 				printf("Search done\n");
 			} else {
 				printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
 				r = 1;
 				s = 1;
 				//Симлинк
-				direction(argv[4]);
+				traversal(argv[4]);
 				printf("Search done\n");
 			} else {
 				printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
 				closedir(check_dir);
 				sample = argv[2];
 				r = 1;
-				direction(argv[3]);
+				traversal(argv[3]);
 				printf("Search done\n");
 			} else {
 				printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
 				sample = argv[2];
 				h = 1;
 				//Скрытые папки/файлы
-				direction(argv[3]);
+				traversal(argv[3]);
 				printf("Search done\n");
 			} else {
 				printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
 				sample = argv[2];
 				s = 1;
 				//Симлинк
-				direction(argv[3]);
+				traversal(argv[3]);
 				printf("Search done\n");
 			} else {
 				printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
@@ -133,7 +133,7 @@ int main(int argc, char *argv[])
 		if (check_dir != NULL) {
 			closedir(check_dir);
 			sample = argv[1];
-			direction(argv[2]);
+			traversal(argv[2]);
 			printf("Search done\n");
 		} else {
 			printf("Directory doesn't exist or cannot be opened\nSearch failed\n");

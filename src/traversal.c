@@ -4,7 +4,7 @@
 #include <dirent.h>
 #include "int_vector.h"
 #include "output.h"
-#include "dir_tree.h"
+#include "traversal.h"
 #include "search.h"
 
 extern char *sample;
@@ -24,7 +24,30 @@ char *file_to_string(FILE *file)
 	return string;
 }
 
-void direction(char *dir_name)
+/*
+Добавил функцию traversal_file()
+В нее перенес все что выполнялось при обнаружении файла
+*/
+
+void traversal_file(char *name)
+{
+	FILE *log = fopen("./logs/user.log", "a");
+	fprintf(log, "%s\n", name);
+	fclose(log);
+
+	FILE *file = fopen(name, "r"); //Открываем файл
+	char *text = file_to_string(file); //Формируем из файла строку
+	fclose(file);	
+	
+	IntVector *result = search(text, sample); //Передаем текст и образец в функцию поиска
+	
+	file_output(text, result); //Текст и полученный вектор передаем в выводящую функцию
+
+	int_vector_free(result);				
+	free(text);
+}
+
+void traversal(char *dir_name)
 {
 	DIR *dir = opendir(dir_name), *check_dir = NULL;
 	struct dirent *files;
@@ -63,23 +86,10 @@ void direction(char *dir_name)
 			if (check_dir != NULL) {
 				//Рекурсия выполняется только если есть ключ -r
 				if (r) {
-					direction(name);
+					traversal(name);
 				}
 			} else {
-				FILE *log = fopen("./logs/user.log", "a");
-				fprintf(log, "%s\n", name);
-				fclose(log);
-				
-				FILE *file = fopen(name, "r"); //Открываем файл				
-				char *text = file_to_string(file); //Формируем из файла строку
-				fclose(file);
-				
-				IntVector *result = search(text, sample); //Передаем текст и образец в функцию поиска
-				
-				file_output(text, result); //Текст и полученный вектор передаем в выводящую функцию
-
-				int_vector_free(result);				
-				free(text);
+				traversal_file(name);
 			}
 			closedir(check_dir);
 			free(name);

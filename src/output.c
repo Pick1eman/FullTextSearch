@@ -4,7 +4,7 @@
 #include <dirent.h>
 #include "int_vector.h"
 #include "output.h"
-#include "dir_tree.h"
+#include "traversal.h"
 #include "search.h"
 
 /*
