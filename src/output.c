@@ -8,20 +8,32 @@
 #include "search.h"
 
 /*
-Вывод в формате
-номер_строки:номер_символа_в_строке
-Пока вывод такой
-Нужно переработать или дополнить
+Вывод в формате:
+<имя_файла>: <число_совпадений>
+<номер_строки>-<номер_символа>
 */
 
-void file_output(char *text, IntVector *result)
+size_t general_counter = 0;
+
+void beginning_output(char *dir_name)
+{
+	FILE *log = fopen("./logs/user.log", "w");
+	fprintf(log, "         Output format\n _____________________________\n|<file_name>: <matches_number>|\n|<line>-<character>           |\n|_____________________________|\n\nTarget directory: %s\n\n", dir_name);
+	fclose(log);
+}
+
+void result_output(char *file_name, char *text, IntVector *result)
 {
 	FILE *log = fopen("./logs/user.log", "a");
+	fprintf(log, "%s: ", file_name);
 	
 	//Если result->size = 0, значит совпадения не были найдены
 	if (!result->size) {
-		fprintf(log, "No matches found\n");
+		fprintf(log, "0\nNo matches found\n");
 	} else {
+		fprintf(log, "%zd\n", result->size);
+		general_counter += result->size;
+
 		unsigned int text_length = strlen(text) + 1;
 		unsigned int str_num = 1; //Переменная считает номер строки
 		unsigned int char_num = 0; //Переменная считает номер символа в строке
@@ -34,12 +46,19 @@ void file_output(char *text, IntVector *result)
 				char_num = 0;
 			}
 			if (i == result->arr[result_index]) {
-				fprintf(log, "%u:%u\n", str_num, char_num);
+				fprintf(log, "%u-%u\n", str_num, char_num);
 				++result_index;
 			}
 		}
 	}
 	fprintf(log, "\n");
 
+	fclose(log);
+}
+
+void ending_output()
+{
+	FILE *log = fopen("./logs/user.log", "a");
+	fprintf(log, "Total: %zd\n", general_counter);
 	fclose(log);
 }
