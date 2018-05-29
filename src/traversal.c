@@ -9,7 +9,7 @@
 
 extern char *sample;
 
-extern int r, h, s;
+extern int r, h;
 
 char *file_to_string(FILE *file)
 {
