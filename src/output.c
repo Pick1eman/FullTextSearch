@@ -49,6 +49,11 @@ void result_output(char *file_name, char *text, IntVector *result)
 			if (i == result->arr[result_index]) {
 				fprintf(log, "%u-%u\n", str_num, char_num);
 				++result_index;
+				//Вывод всей строки в которой найдено совпадение. Не знаю, нужно ли? Пока закомментил
+				/*for (unsigned int j = i - char_num + 1; ((text[j] != '\n') && (text[j] != '\0')); ++j) {
+					fprintf(log, "%c", text[j]);
+				}
+				fprintf(log, "\n");*/
 			}
 		}
 	}
