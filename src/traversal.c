@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include <dirent.h>
 #include "int_vector.h"
 #include "output.h"
@@ -24,6 +25,15 @@ char *file_to_string(FILE *file)
 	return string;
 }
 
+char *string_tolower(char *string)
+{
+	for (unsigned int i = 0; string[i] != '\0'; ++i) {
+		string[i] = tolower(string[i]);
+	}
+
+	return string;
+}
+
 /*
 Добавил функцию traversal_file()
 В нее перенес все что выполнялось при обнаружении файла
@@ -35,6 +45,9 @@ void traversal_file(char *file_name)
 	char *text = file_to_string(file); //Формируем из файла строку
 	fclose(file);	
 	
+	text = string_tolower(text);
+	sample = string_tolower(sample);
+
 	IntVector *result = search(text, sample); //Передаем текст и образец в функцию поиска
 	
 	result_output(file_name, text, result); //Текст и полученный вектор передаем в выводящую функцию

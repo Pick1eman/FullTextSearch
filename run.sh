@@ -1,1 +1,1 @@
-./bin/FullTextSearch -r -h compression ./res
+./bin/ftsearch -r -h Compression ./res

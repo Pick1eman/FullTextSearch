@@ -1,7 +1,7 @@
 .PHONY: clean
 
 all: main.o traversal.o search.o int_vector.o output.o
-		gcc -Wall build/main.o build/traversal.o build/search.o build/int_vector.o build/output.o -o bin/FullTextSearch
+		gcc -Wall build/main.o build/traversal.o build/search.o build/int_vector.o build/output.o -o bin/ftsearch
 main.o:
 		gcc -Wall -c src/main.c -o build/main.o
 traversal.o:
