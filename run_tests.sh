@@ -1,0 +1,1 @@
+./bin/ftsearch_test

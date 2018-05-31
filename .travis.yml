@@ -1,0 +1,3 @@
+language: c
+compiler: gcc
+script: make dir && make all && make test && ./bin/ftsearch_test

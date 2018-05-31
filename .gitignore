@@ -1,10 +1,11 @@
 *.[ao]
 #*#
 *~
-*.txt
 *.log
+*.txt
 *.json
 bin/*
 build/*
 logs/*
 res/*
+
