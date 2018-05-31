@@ -21,7 +21,7 @@ extern size_t general_counter;
 
 CTEST(serach1, correct)
 {
-	IntVector *result = search("Hello world!", "world");
+	IntVector *result = search("Hello world!\n", "world");
 	unsigned int expected = 6;
 	size_t expected1 = 1;
 	ASSERT_EQUAL_U(expected,result->arr[0]);
@@ -32,10 +32,38 @@ CTEST(serach1, correct)
 
 
 
+CTEST(serach2, correct)
+{
+	IntVector *result = search("Kill gunslinger\n", "er\n");
+	unsigned int expected = 13;
+	size_t expected1 = 1;
+	ASSERT_EQUAL_U(expected,result->arr[0]);
+	ASSERT_EQUAL_U(expected1,result->size);
+	ASSERT_EQUAL_U(expected1,result->capacity);
+	int_vector_free(result);
+}
 
 
+CTEST(serach3, correct)
+{
+	IntVector *result = search("Kill gunslinger\n", "Ki");
+	unsigned int expected = 0;
+	size_t expected1 = 1;
+	ASSERT_EQUAL_U(expected,result->arr[0]);
+	ASSERT_EQUAL_U(expected1,result->size);
+	ASSERT_EQUAL_U(expected1,result->capacity);
+	int_vector_free(result);
+}
 
-
+CTEST(serach4, correct)
+{
+	IntVector *result = search("A nu cheeki breeki i v damke!\n", "monolith");
+	size_t expected1 = 0;
+	size_t expected2 = 1;
+	ASSERT_EQUAL_U(expected1,result->size);
+	ASSERT_EQUAL_U(expected2,result->capacity);
+	int_vector_free(result);
+}
 
 
 
