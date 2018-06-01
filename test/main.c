@@ -1,9 +1,9 @@
 #define CTEST_MAIN
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <ctype.h>
 #include <dirent.h>
+#include "strings.h"
 #include "int_vector.h"
 #include "output.h"
 #include "traversal.h"
@@ -16,9 +16,6 @@ int r = 0, h = 0;
 
 extern size_t general_counter;
 
-
-
-
 CTEST(serach1, correct)
 {
 	IntVector *result = search("Hello world!\n", "world");
@@ -29,8 +26,6 @@ CTEST(serach1, correct)
 	ASSERT_EQUAL_U(expected1,result->capacity);
 	int_vector_free(result);
 }
-
-
 
 CTEST(serach2, correct)
 {
@@ -76,37 +71,17 @@ CTEST(serach5, correct)
 	int_vector_free(result);
 }
 
-
-
-
 CTEST(string_tolower1, correct)
 {
 	char *result = (char*)malloc(24 * sizeof(char));
-	strcpy(result, "NLC 7:i'm Markered One\n");
+	scpy(result, "NLC 7:i'm Markered One\n");
 	result = string_tolower(result);
 	char *expected = (char*)malloc(24 * sizeof(char));
-	strcpy(expected, "nlc 7:i'm markered one\n");
+	scpy(expected, "nlc 7:i'm markered one\n");
 	ASSERT_STR(expected, result);
 	free(expected);
 	free(result);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 int main(int argc, const char** argv)
 {

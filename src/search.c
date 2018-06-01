@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include "strings.h"
 #include "int_vector.h"
 #include "search.h"
 
 IntVector *search(char *text, char *sample)
 {
 	//Находим длины строк
-	unsigned int text_length = strlen(text);
-	unsigned int sample_length = strlen(sample);
+	unsigned int text_length = slen(text);
+	unsigned int sample_length = slen(sample);
 
 	//Создаем вектор для записи индексов начал совпадающих подстрок
 	IntVector *result = int_vector_new(1);

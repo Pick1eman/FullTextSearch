@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <ctype.h>
 #include <dirent.h>
+#include "strings.h"
 #include "int_vector.h"
 #include "output.h"
 #include "traversal.h"
@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 		fclose(log);
 
 		if (argc == 5) {
-			if (!strcmp(argv[1], "-r") && (!strcmp(argv[2], "-h"))) {
+			if (!scmp(argv[1], "-r") && (!scmp(argv[2], "-h"))) {
 				DIR *check_dir = opendir(argv[4]);
 				if (check_dir != NULL) {
 					closedir(check_dir);
@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 				return -1;
 			}
 		} else if (argc == 4) {
-			if (!strcmp(argv[1], "-r")) {
+			if (!scmp(argv[1], "-r")) {
 				DIR *check_dir = opendir(argv[3]);
 				if (check_dir != NULL) {
 					closedir(check_dir);
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 					printf("Directory doesn't exist or cannot be opened\nSearch failed\n");
 					return -1;
 				}
-			} else if (!strcmp(argv[1], "-h")) {
+			} else if (!scmp(argv[1], "-h")) {
 				DIR *check_dir = opendir(argv[3]);
 				if (check_dir != NULL) {
 					closedir(check_dir);

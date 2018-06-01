@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 #include <dirent.h>
+#include "strings.h"
 #include "int_vector.h"
 #include "output.h"
 #include "traversal.h"
@@ -28,7 +27,7 @@ char *file_to_string(FILE *file)
 char *string_tolower(char *string)
 {
 	for (unsigned int i = 0; string[i] != '\0'; ++i) {
-		string[i] = tolower(string[i]);
+		string[i] = tolow(string[i]);
 	}
 
 	return string;
@@ -65,22 +64,22 @@ void traversal(char *dir_name)
 	while ((files = readdir(dir)) != NULL) {
 
 		//Исключаем текущий и родительский каталоги
-		if (strcmp(files->d_name, ".") && strcmp(files->d_name, "..")) {
+		if (scmp(files->d_name, ".") && scmp(files->d_name, "..")) {
 			//Ключ -h. Проверка, является ли файл (папка) скрытым
 			if ((!h) && (files->d_name[0] == '.')) {
 				continue;
 			}
 
 			//Преобразуем имя файла в относительный адрес
-			int name_length = strlen(files->d_name);
+			int name_length = slen(files->d_name);
 			char *name = (char*)malloc((name_length + 1) * sizeof(char));
-			strcpy(name, files->d_name);
-			int dir_name_length = strlen(dir_name);
+			scpy(name, files->d_name);
+			int dir_name_length = slen(dir_name);
 
 			// Перенос новой строки вправо на длину текущей строки
 			name_length = name_length + dir_name_length + 1;
 			name = (char*)realloc(name, (name_length + 1) * sizeof(char));
-			for (int i = strlen(files->d_name); i >= 0; --i) {
+			for (int i = slen(files->d_name); i >= 0; --i) {
 				name[i + dir_name_length + 1] = name[i];
 			}
 

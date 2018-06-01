@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <dirent.h>
+#include "strings.h"
 #include "int_vector.h"
 #include "output.h"
 #include "traversal.h"
@@ -35,7 +35,7 @@ void result_output(char *file_name, char *text, IntVector *result)
 		fprintf(log, "%zd\n", result->size);
 		general_counter += result->size;
 
-		unsigned int text_length = strlen(text) + 1;
+		unsigned int text_length = slen(text) + 1;
 		unsigned int str_num = 1; //Переменная считает номер строки
 		unsigned int char_num = 0; //Переменная считает номер символа в строке
 		unsigned int result_index = 0; //Счетчик увеличивается каждый раз при выводе индекса в файл
