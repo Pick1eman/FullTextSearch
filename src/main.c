@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
 
 		general_counter = 0;
 
-		printf("Do yoy want to try again? (1 - yes / 0 - no)\n> ");
+		printf("Do you want to try again? (1 - yes / 0 - no)\n> ");
 		scanf("%d", &retry);
 
 	} while (retry);

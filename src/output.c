@@ -7,18 +7,11 @@
 #include "traversal.h"
 #include "search.h"
 
-/*
-Вывод в формате:
-<имя_файла>: <число_совпадений>
-<номер_строки>-<номер_символа>
-*/
-
 size_t general_counter = 0;
 
 void beginning_output(char *dir_name)
 {
 	FILE *log = fopen("./logs/user.log", "w");
-	//fprintf(log, "         Output format\n _____________________________\n|<file_name>: <matches_number>|\n|<line>-<character>           |\n|_____________________________|\n\n");
 	fprintf(log, "Target directory: %s\n\n", dir_name);
 	fclose(log);
 }

@@ -33,11 +33,6 @@ char *string_tolower(char *string)
 	return string;
 }
 
-/*
-Добавил функцию traversal_file()
-В нее перенес все что выполнялось при обнаружении файла
-*/
-
 void traversal_file(char *file_name)
 {
 	FILE *file = fopen(file_name, "r"); //Открываем файл
